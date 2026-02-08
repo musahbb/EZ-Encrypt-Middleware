@@ -19,6 +19,8 @@ type Config struct {
 	DebugMode                 string
 	AllowedPaymentNotifyPaths string
 	PathPrefix                string
+	ApiPrefix                 string
+	SubscriptionPrefix        string
 }
 
 var AppConfig *Config
@@ -40,6 +42,8 @@ func LoadConfig() {
 		DebugMode:                 getEnv("DEBUG_MODE", "false"),
 		AllowedPaymentNotifyPaths: getEnv("ALLOWED_PAYMENT_NOTIFY_PATHS", ""),
 		PathPrefix:                getEnv("PATH_PREFIX", ""),
+		ApiPrefix:                 getEnv("API_PREFIX", "/api/v1"),
+		SubscriptionPrefix:        getEnv("SUBSCRIPTION_PREFIX", "/sub"),
 	}
 
 	if AppConfig.BackendAPIURL == "" {

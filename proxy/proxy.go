@@ -37,7 +37,16 @@ func ProxyHandler(c *gin.Context) {
 
 	backendURL := config.AppConfig.BackendAPIURL
 
-	targetURL := backendURL + "/api/v1" + decryptedPath
+	var targetURL string
+	subPrefix := config.AppConfig.SubscriptionPrefix
+	if subPrefix != "" && strings.HasPrefix(decryptedPath, subPrefix+"/") {
+		// 订阅请求：去掉标记前缀，直接转发（不拼 API_PREFIX）
+		realPath := strings.TrimPrefix(decryptedPath, subPrefix)
+		targetURL = backendURL + realPath
+	} else {
+		// 普通 API 请求：拼上可配置的 API 前缀
+		targetURL = backendURL + config.AppConfig.ApiPrefix + decryptedPath
+	}
 
 	target, err := url.Parse(targetURL)
 	if err != nil {
