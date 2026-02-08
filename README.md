@@ -120,12 +120,6 @@ go run main.go
 中间件: 解密 → /user/info → 无订阅前缀 → 拼 API_PREFIX → /api/v1/user/info → 转发后端 ✅
 ```
 
-### 订阅请求
-```
-客户端: /sihai/xxx?burn=yyy → 加 /sub → /sub/sihai/xxx?burn=yyy → 加密
-中间件: 解密 → /sub/sihai/xxx?burn=yyy → 去 /sub → /sihai/xxx?burn=yyy → 转发后端 ✅
-```
-
 ### 支付回调
 ```
 第三方: /api/v1/guest/payment/notify/EPay/12345 → 直接转发后端（免加密） ✅
