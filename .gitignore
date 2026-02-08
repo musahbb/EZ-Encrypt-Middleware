@@ -1,0 +1,19 @@
+# 构建输出
+dist/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Go
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# 系统文件
+.DS_Store
+Thumbs.db
